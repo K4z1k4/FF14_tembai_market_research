@@ -2,36 +2,9 @@ name: ff14-tembai-sync
 
 on:
   workflow_dispatch:
-  schedule:
-    - cron: "*/30 * * * *"
 
 jobs:
-  run-sync:
+  test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-
-      - uses: actions/setup-python@v5
-        with:
-          python-version: "3.13"
-
-      - name: Install deps
-        run: |
-          python -m pip install --upgrade pip
-          pip install -r requirements.txt
-
-      - name: Write Google credentials JSON to file
-        shell: bash
-        run: |
-          set -euo pipefail
-          cat > sa.json <<'EOF'
-${{ secrets.TEMBAI_GOOGLE_CREDENTIALS_JSON_SECRET }}
-EOF
-
-      - name: Run sync
-        env:
-          FF14_TEMBAI_SHEET_ID: ${{ secrets.TEMBAI_SHEET_ID_SECRET }}
-          FF14_TEMBAI_GOOGLE_CREDENTIALS_JSON: ${{ github.workspace }}/sa.json
-          TZ: Asia/Tokyo
-        run: |
-          python sync_sheets.py
+      - run: echo "workflow loaded"
