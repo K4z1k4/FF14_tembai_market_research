@@ -1,10 +1,9 @@
 name: ff14-tembai-sync
 
 on:
-  workflow_dispatch:
   schedule:
-    - cron: "3/6 * * * *"
-
+    - cron: '3/10 * * * *'
+  workflow_dispatch:
 jobs:
   run-sync:
     runs-on: ubuntu-latest
