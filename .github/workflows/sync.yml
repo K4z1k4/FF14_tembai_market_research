@@ -20,10 +20,18 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
+      - name: Write Google credentials JSON to file
+        shell: bash
+        run: |
+          set -euo pipefail
+          cat > sa.json <<'EOF'
+${{ secrets.TEMBAI_GOOGLE_CREDENTIALS_JSON_SECRET }}
+EOF
+
       - name: Run sync
         env:
           FF14_TEMBAI_SHEET_ID: ${{ secrets.TEMBAI_SHEET_ID_SECRET }}
-          FF14_TEMBAI_GOOGLE_CREDENTIALS_JSON: ${{ secrets.TEMBAI_GOOGLE_CREDENTIALS_JSON_SECRET }}
+          FF14_TEMBAI_GOOGLE_CREDENTIALS_JSON: ${{ github.workspace }}/sa.json
           TZ: Asia/Tokyo
         run: |
           python sync_sheets.py
