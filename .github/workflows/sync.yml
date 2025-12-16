@@ -1,7 +1,6 @@
 name: ff14-tembai-sync
 
 on:
-  workflow_dispatch:
   schedule:
     - cron: "*/5 * * * *"
 
