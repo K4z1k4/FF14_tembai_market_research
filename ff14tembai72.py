@@ -1,4 +1,4 @@
-from __future__ import annotations
+from __future__ import annotations 
 
 from dataclasses import dataclass
 from typing import Any, Dict, Iterable, List, Optional, Tuple
@@ -964,3 +964,4 @@ if __name__ == "__main__":
     print(f"  sell    = {out['sell_price']:.6g}   # NA 最安付近(MAD)")
     print(f"  spread  = {out['spread']:.6g}")
     print(f"  E[profit_24h] = {out['expected_profit_24h']:.6g}")
+
